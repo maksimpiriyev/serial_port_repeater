@@ -1,0 +1,2 @@
+./bin /dev/ttyACM0 57600 /dev/ttyUSB0 57600 /tmp/fifomav /tmp/fifodrone
+

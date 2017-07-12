@@ -1,1 +1,1 @@
-g++ -Ofast -std=c++11 -o repeater  main.cpp serial_port.cpp -lpthread
+g++ -Ofast -std=c++11 -o bin  main.cpp serial_port.cpp -lpthread

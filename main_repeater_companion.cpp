@@ -13,6 +13,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include "serial_port.h"
+#include <mavlink/common/mavlink.h>
 #define BUFFER_LENGTH 1000
 
 
@@ -73,6 +74,19 @@ int main(int argc, const char * argv[]) {
             int l = sp1._read_port(buffer1,BUFFER_LENGTH);
             if(l>0){
                 sp2._write_port(buffer1, l);
+                static mavlink_message_t msg;
+                static mavlink_status_t status;
+                
+                //  printf("Bytes Received: %d\nDatagram: ", (int)recsize);
+                for (int i = 0; i < l; ++i)
+                {
+                    if (mavlink_parse_char(MAVLINK_COMM_0, buf[i], &msg, &status))
+                    {
+                        
+                        // Packet received
+                        printf("\nReceived packet: SYS: %d, COMP: %d, LEN: %d, MSG ID: %d\n", msg.sysid, msg.compid, msg.len, msg.msgid);
+                    }
+                }
             }
             usleep(5*1000);
             

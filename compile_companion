@@ -1,0 +1,1 @@
+g++ -Ofast -std=c++11 -o companion  main_companion.cpp serial_port.cpp -lpthread -w -I./include/

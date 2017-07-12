@@ -13,20 +13,16 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include "serial_port.h"
+#include <mavlink/common/mavlink.h>
 #define BUFFER_LENGTH 1000
 
 
 
-static SerialPort* serial1,*serial2;
-static int pipe_fd = -1;
-static int pipe_dronee = -1;
-// Define the function to be called when ctrl-c (SIGINT) signal is sent to process
+static SerialPort* serial1;
 void
 signal_callback_handler(int signum)
 {
     serial1->close_serial();
-    serial2->close_serial();
-    close(pipe_fd);
     exit(signum);
 }
 
