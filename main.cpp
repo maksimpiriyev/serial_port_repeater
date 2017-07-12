@@ -31,7 +31,6 @@ signal_callback_handler(int signum)
 }
 
 int main(int argc, const char * argv[]) {
-    if (argc >= 6) {
   
     int baudRate1 = 115200,baudRate2=115200;
     const char* port1,*port2;
